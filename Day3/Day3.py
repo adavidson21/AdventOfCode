@@ -1,6 +1,8 @@
 # Import the data & parse by line break
 data = open("Day3/Input.txt").read().split("\n")
-sum = 0
+sum1 = 0
+sum2 = 0
+groups = list(zip(*[iter(data)]*3))
 
 priorities = {
     "a": 1,
@@ -57,10 +59,19 @@ priorities = {
     "Z": 52,
 }
 
+# Part 1
 for d in data:
     p1, p2 = d[:len(d)//2], d[len(d)//2:]  # split string
     first, second = set(p1), set(p2)
     unique = list(first & second)
-    sum += int(priorities[unique[0]])  # Get priority of first unique value
+    sum1 += int(priorities[unique[0]])  # Get priority of first unique value
 
-print("Part 1:",  sum)
+# Part 1
+for group in groups:
+
+    first, second, third = set(group[0]), set(group[1]), set(group[2])
+    unique = list(first & second & third)
+    sum2 += int(priorities[unique[0]])  # Get priority of first unique value
+
+print("Part 1:",  sum1)
+print("Part 2:",  sum2)
