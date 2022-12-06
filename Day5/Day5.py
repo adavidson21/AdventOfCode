@@ -18,6 +18,27 @@ stack8 = ["W", "M", "H", "T", "D", "L", "F", "V"]
 stack9 = ["L", "P", "B", "V", "M", "J", "F"]
 
 
+def resetStacks():
+    global stack1
+    global stack2
+    global stack3
+    global stack4
+    global stack5
+    global stack6
+    global stack7
+    global stack8
+    global stack9
+    stack1 = ["R", "N", "P", "G"]
+    stack2 = ["T", "J", "B", "L", "C", "S", "V", "H"]
+    stack3 = ["T", "D", "B", "M", "N", "L"]
+    stack4 = ["R", "V", "P", "S", "B"]
+    stack5 = ["G", "C", "Q", "S", "W", "M", "V", "H"]
+    stack6 = ["W", "Q", "S", "C", "D", "B", "J"]
+    stack7 = ["F", "Q", "L"]
+    stack8 = ["W", "M", "H", "T", "D", "L", "F", "V"]
+    stack9 = ["L", "P", "B", "V", "M", "J", "F"]
+
+
 def chooseStack(num):
     if(num == 1):
         return stack1
@@ -48,6 +69,35 @@ for d in data:
     for i in range(0, vals[0]):
         toStack.append(fromStack.pop())  # move from one to another
 
+print("---------------------------------")
+print("Part 1")
+print("---------------------------------")
+print("Stack 1: ", stack1.pop())
+print("Stack 2: ", stack2.pop())
+print("Stack 3: ", stack3.pop())
+print("Stack 4: ", stack4.pop())
+print("Stack 5: ", stack5.pop())
+print("Stack 6: ", stack6.pop())
+print("Stack 7: ", stack7.pop())
+print("Stack 8: ", stack8.pop())
+print("Stack 9: ", stack9.pop())
+
+print(" ")
+resetStacks()
+
+for d in data:
+    vals = [int(s) for s in d.split() if s.isdigit()]  # Get digits
+    fromStack = chooseStack(vals[1])  # stack to choose from
+    toStack = chooseStack(vals[2])  # stack to add to
+    tempStack = []  # temp stack to retain order
+    for i in range(0, vals[0]):
+        tempStack.append(fromStack.pop())
+    for i in range(0, vals[0]):
+        toStack.append(tempStack.pop())
+
+print("---------------------------------")
+print("Part 2")
+print("---------------------------------")
 print("Stack 1: ", stack1.pop())
 print("Stack 2: ", stack2.pop())
 print("Stack 3: ", stack3.pop())
